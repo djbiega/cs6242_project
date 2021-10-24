@@ -12,4 +12,9 @@ setup(
         "notebook>=6.4.5",
         "spotipy>=2.19.0",
     ],
+    entry_points={
+        'console_scripts': [
+            'process_spotify = cs6242_project.data.process_spotify:main',
+        ],
+    },
 )
