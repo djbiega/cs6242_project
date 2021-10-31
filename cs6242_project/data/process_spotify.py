@@ -109,8 +109,17 @@ def add_features(
     ) -> Dict[str, TrackFeatures]:
     try:
         audio_features = spotify_client.audio_features(track_uris)
-        tracks = spotify_client.tracks(track_uris)['tracks']
+        track_response = spotify_client.tracks(track_uris)
+        # Sometimes the track response returns a None type
+        if 'tracks' not in track_response.keys():
+            return track_features
+        else:
+            tracks = track_response['tracks']
         for idx, track_uri in enumerate(track_uris):
+            # If there are no audio features, skip
+            if not audio_features[idx]:
+                continue
+            # If there is no track info, set popularity to None
             track_features[track_uri] = {
                 'popularity': tracks[idx]['popularity'] if tracks[idx] else None,
                 'danceability': audio_features[idx]['danceability'],
@@ -153,7 +162,7 @@ def main():
 
     for f in os.listdir(args.input_path):
         if not f.startswith("mpd") or not f.endswith(".json"):
-            logging.info("Skipping %s", f)
+            logger.info("Skipping %s", f)
             continue
 
         input_file = Path(args.input_path)/f
@@ -177,7 +186,7 @@ def main():
         output_file = Path(args.output_path)/f
         with open(output_file, "w") as outfile:
             json.dump(combined_dict, outfile, indent=4)
-            logging.info("Processed %s", output_file)
+            logger.info("Processed %s", output_file)
 
 if __name__ == '__main__':
    main() 
