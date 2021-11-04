@@ -8,6 +8,13 @@ setup(
     author='CS6242 Team 21',
     install_requires=[
         "numpy>=1.21.2",
-        "notebook"
+        "pandas>=1.3.4",
+        "notebook>=6.4.5",
+        "spotipy>=2.19.0",
     ],
+    entry_points={
+        'console_scripts': [
+            'process_spotify = cs6242_project.data.process_spotify:main',
+        ],
+    },
 )
