@@ -28,27 +28,22 @@ Jupyter notebooks can be accessed from within the docker container by running
 * `jupyter-notebook --ip=0.0.0.0`
 
 ### Database
+Our infrastructure uses docker-compose to build isolated containers. If you don't
+have it, then download it. With docker-compose first run `docker-compose build`
+to build all the images initially. This may take awhile the first time you run this.
+
 To create the database, just run `docker-compose up -d db`, which will start
-a docker container which hosts the database in the backgroun. To enter into 
-`psql` within the container, run `psql -h localhost -p 5432 -U postgres`
+a docker container which hosts the database in the background. You should see it 
+if you type `docker ps`. The first time you create the database, you'll need to 
+populate the database. To do this, download the .sql script from 
+https://drive.google.com/file/d/1pB1hmjan_K_hQaWWZCm-3fnIC2nHpfr2/view?usp=sharing and
+then run `cat /path/to/spotify_backup.sql | docker exec -i cs6242_project_db_1 psql -U postgres`.
+This should populate the database and the docker-compose should have things set up 
+such that the data will persist even when you sotp and start the container (Not tested
+but I think this will persist).
 
-
-* Add `database.ini` file as shown below:
-```
-[postgresql]
-host=db
-database=spotify
-user=postgres
-password=spotify 
-port=5432
-```
-* Create the database by running python `cs6242_project/db/create_db.py`
-* Create the tables by running python `cs6242_project/db/create_tables.py`
-* Insert data into the tables from our cloud storage bucket by:
-** Install gsutil https://cloud.google.com/storage/docs/gsutil_install
-** From your console, run `gcloud auth application-default login`
-** Download the google cloud service key from https://console.cloud.google.com/iam-admin/serviceaccounts/details/110863329804817868319/keys?project=fast-gateway-329914&supportedpurview=project, and then move it to `$HOME/.config/gcloud`
-
-
-
+To enter into `psql` within the container, run `docker exec -i cs6242_project_db_1 psql -U postgres`.
+If you type `\l` you should see a `spotify` database. Connect to it with `\c spotify`. 
+To list the tables, type `\dt`. Verify that the tables have data in them with 
+`select count(*) from playlist;`. This table should have 1000 rows.
 

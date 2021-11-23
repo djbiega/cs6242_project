@@ -129,4 +129,4 @@ dmypy.json
 .pyre/
 
 # Hide database.ini
-database.ini
+#database.ini
