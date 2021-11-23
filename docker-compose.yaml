@@ -1,0 +1,31 @@
+version: '3'
+services:
+  db:
+    image: 'postgres:13.2-alpine'
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=spotify
+      - POSTGRES_DB=spotify
+    volumes:
+      - db-data:/var/lib/postgresql/data # persist data even if container shuts down
+    networks:
+      - spotify_network
+  app: 
+    build: ./docker/app
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/opt/cs6242_home/
+    networks:
+      - spotify_network
+    depends_on:
+      - db
+
+volumes:
+  db-data: # names volumes can be managed easier using docker-compose
+
+networks:
+  spotify_network:
+    driver: bridge 
