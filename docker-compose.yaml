@@ -1,19 +1,5 @@
 version: '3'
 services:
-  data_collection: 
-    build: ./docker/data_collection
-    ports:
-      - "8888:8888"
-      - "6006:6006"
-      - "8000:8000"
-    volumes:
-      - .:/opt/cs6242_home/
-      - /media/djbiega/My Passport/CS6242_Spotify_Dataset/:/opt/data/
-      - $HOME/.config/gcloud:/home/docker/.config/gcloud
-    networks:
-      - spotify_network
-    depends_on:
-      - db
   db:
     image: 'postgres:13.2-alpine'
     ports:
