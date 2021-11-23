@@ -2,7 +2,7 @@
 
 cd /opt/cs6242_home
 
-pip install --user -e . 
+pip install --user -e .[data_collection] 
 
 exec "$@"
 

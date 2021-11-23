@@ -37,8 +37,6 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 USER docker
 
-RUN sudo apt-get update 
-
 COPY entrypoint.sh /entrypoint.sh
 RUN sudo chmod 755 /entrypoint.sh
 

@@ -1,12 +1,18 @@
 from setuptools import find_packages, setup
 
+APP_EXTRAS = [
+    "Flask",
+    "scikit-learn",
+]
+
 DATA_EXTRAS = [
     "notebook>=6.4.5",
     "spotipy>=2.19.0",
 ]
 
 DB_EXTRAS = [
-    "psycopg2"
+    "psycopg2",
+    "google-cloud-storage",
 ]
 
 setup(
@@ -22,6 +28,7 @@ setup(
     extras_require={
         "data_collection": DATA_EXTRAS,
         "db": DB_EXTRAS,
+        "app": APP_EXTRAS,
     },
     entry_points={
         'console_scripts': [

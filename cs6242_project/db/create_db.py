@@ -1,5 +1,4 @@
 import psycopg2
-from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 
 from cs6242_project.db.config import config
 
@@ -12,7 +11,7 @@ def create_db():
 
         # connect to the PostgreSQL server
         print('Creating the spotify database...')
-        params["database"] = "postgres"
+        params["database"] = "postgres" # hard-code since the database doesn't exist yet
         conn = psycopg2.connect(**params)
         conn.autocommit = True
 		

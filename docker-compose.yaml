@@ -9,8 +9,9 @@ services:
     volumes:
       - .:/opt/cs6242_home/
       - /media/djbiega/My Passport/CS6242_Spotify_Dataset/:/opt/data/
+      - $HOME/.config/gcloud:/home/docker/.config/gcloud
     networks:
-      - my_network
+      - spotify_network
     depends_on:
       - db
   db:
@@ -24,10 +25,21 @@ services:
     volumes:
       - db-data:/var/lib/postgresql/data # persist data even if container shuts down
     networks:
-      - my_network
+      - spotify_network
+  app: 
+    build: ./docker/app
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/opt/cs6242_home/
+    networks:
+      - spotify_network
+    depends_on:
+      - db
 
 volumes:
   db-data: # names volumes can be managed easier using docker-compose
 
 networks:
-  my_network:
+  spotify_network:
+    driver: bridge 

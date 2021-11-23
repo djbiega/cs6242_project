@@ -33,12 +33,22 @@ a docker container which hosts the database in the backgroun. To enter into
 `psql` within the container, run `psql -h localhost -p 5432 -U postgres`
 
 
-* Create the database with `CREATE DATABASE spotify;` 
 * Add `database.ini` file as shown below:
 ```
 [postgresql]
-host=localhost
-database=suppliers
+host=db
+database=spotify
 user=postgres
-password=SecurePas$1 
+password=spotify 
+port=5432
 ```
+* Create the database by running python `cs6242_project/db/create_db.py`
+* Create the tables by running python `cs6242_project/db/create_tables.py`
+* Insert data into the tables from our cloud storage bucket by:
+** Install gsutil https://cloud.google.com/storage/docs/gsutil_install
+** From your console, run `gcloud auth application-default login`
+** Download the google cloud service key from https://console.cloud.google.com/iam-admin/serviceaccounts/details/110863329804817868319/keys?project=fast-gateway-329914&supportedpurview=project, and then move it to `$HOME/.config/gcloud`
+
+
+
+
