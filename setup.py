@@ -3,6 +3,7 @@ from setuptools import find_packages, setup
 APP_EXTRAS = [
     "Flask",
     "scikit-learn",
+    "SQLAlchemy",
 ]
 
 DATA_EXTRAS = [
