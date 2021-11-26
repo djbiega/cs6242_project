@@ -81,5 +81,4 @@ def item_to_item_method():
 
 @app.route("/", methods=["GET"])
 def hello_world():
-    print(item_to_item([]))
-    return jsonify(recommendations)
+    return jsonify({"Output": "Hello from the otherside"})
