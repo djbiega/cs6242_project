@@ -38,8 +38,8 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 USER docker
 
-COPY entrypoint.sh /entrypoint.sh
-RUN sudo chmod 755 /entrypoint.sh
+COPY entrypoint.sh ./entrypoint.sh
+RUN sudo chmod 755 ./entrypoint.sh
 
 EXPOSE 5000
 
