@@ -40,31 +40,6 @@ dummy_inputs = [
         }
     }
 ]
-#        "1": {
-#            "acousticness": 0.0509,
-#            "album": "Temp Do It To It",
-#            "analysis_url": "https://api.spotify.com/v1/audio-analysis/20on25jryn53hWghthWW3Temp",
-#            "artist": "ACRAZE",
-#            "danceability": 0.824,
-#            "duration_ms": 157309,
-#            "energy": 0.384,
-#            "id": "20on25jnon57hWghthWW3",
-#            "instrumentalness": 0.0893,
-#            "key": 10,
-#            "liveness": 0.0993,
-#            "loudness": -4.382,
-#            "mode": 0,
-#            "name": "Temp Do It To It",
-#            "speechiness": 0.0294,
-#            "tempo": 122.398,
-#            "time_signature": 4,
-#            "track_href": "https://api.spotify.com/v1/tracks/20on25jryn53hWghthWW3Temp",
-#            "type": "audio_feaures",
-#            "uri": "spotify:track:20on25jryn53hWghthWW3",
-#            "valence": 0.384,
-#        }
-#    },
-#]
 
 @app.route("/item_to_item", methods=["GET"])
 def item_to_item_method():
