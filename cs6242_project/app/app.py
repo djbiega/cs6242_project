@@ -181,8 +181,9 @@ def item_to_item_method():
         outputs.append(item_to_item(track, engine))
     outputs_df = pd.concat(outputs)
     temp_df = outputs_df[outputs_df.columns[~outputs_df.columns.isin(NUMERIC_COLUMNS)]].set_index("track_uri")
+    temp_df = temp_df.drop_duplicates()
     outputs_df = outputs_df.groupby("track_uri")[NUMERIC_COLUMNS].mean()
-    outputs_df = outputs_df.join(temp_df)
+    outputs_df = temp_df.join(outputs_df)
     combined_df = pd.concat([input_df, outputs_df])
 
     # Drop where popularity is none bc for some dumb reason I didn't excluse those in the database
