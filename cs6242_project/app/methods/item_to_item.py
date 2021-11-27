@@ -5,7 +5,7 @@ from textwrap import dedent
 
 import pandas as pd
 
-def get_default_songs(engine):
+def get_random_songs(engine):
     query = """
         SELECT
         t1.track_uri,
@@ -22,19 +22,17 @@ def get_default_songs(engine):
         t1.valence,
         t1.tempo
     FROM tracks t1
-    ORDER BY random()
-    LIMIT 20;
+    LIMIT 21;
     """
     recommendations = pd.read_sql(query, con=engine)
-    recommendations["score"] = 0
+    recommendations["score"] = 1e-6
     recommendations["is_recommended"]=True
     return recommendations
 
 
-def item_to_item(track, engine):
-    in_db_query = "SELECT COUNT(*) FROM tracks WHERE track_uri='{}';".format(track)
-    if not pd.read_sql(in_db_query, engine)['count'].item():
-        return get_default_songs(engine)
+def item_to_item(track, engine, cache):
+    if track not in cache['tracks']:
+        return get_random_songs(engine)
         
     
     query = """

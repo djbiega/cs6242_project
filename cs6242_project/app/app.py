@@ -13,6 +13,10 @@ app.config["DEBUG"]=True
 params = config()
 engine = create_engine("postgresql+psycopg2://{user}:{password}@{host}:{port}/{database}".format(**params))
 
+#TODO: This should be a proper Cache using Flask-Caching and/or Redis
+cache_query = "SELECT track_uri FROM tracks"
+CACHE = {"tracks": pd.read_sql(cache_query, con=engine)['track_uri'].to_list()}
+
 
 dummy_inputs = [
     {
@@ -178,7 +182,7 @@ def item_to_item_method():
     #for message in request_data: 
     for message in filtered_input: #FIXME replace with real data 
         track = message.get("track_uri")
-        outputs.append(item_to_item(track, engine))
+        outputs.append(item_to_item(track, engine, CACHE))
     outputs_df = pd.concat(outputs)
     temp_df = outputs_df[outputs_df.columns[~outputs_df.columns.isin(NUMERIC_COLUMNS)]].set_index("track_uri")
     temp_df = temp_df.drop_duplicates()
