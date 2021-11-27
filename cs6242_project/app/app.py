@@ -193,13 +193,16 @@ def item_to_item_method():
     pca_outputs = pca.transform(pca_df)
     combined_df["x"] = pca_outputs[:,0]
     combined_df["y"] = pca_outputs[:,1]
-    combined_df = combined_df.reset_index()
 
+    original_df = combined_df.loc[combined_df["is_recommended"]==False]
+    original_df["score"] = 0
+    combined_df = combined_df.sort_values(by=["score"], ascending=False).head(TOP_K)
+    final_df = pd.concat([combined_df, original_df])
     # If there are any NoNs for whatever reason, convert to None so jsonify can convert to valid json
-    combined_df = combined_df.where(pd.notnull(combined_df), None)
-    combined_df = combined_df.sort_values(by=["score"]).head(TOP_K)
+    final_df = final_df.where(pd.notnull(final_df), None)
+    final_df = final_df.reset_index()
     
-    return jsonify(combined_df.T.to_dict())
+    return jsonify(final_df.T.to_dict())
     
 
 @app.route("/", methods=["GET", "POST"])
