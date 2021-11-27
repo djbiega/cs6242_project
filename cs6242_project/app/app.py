@@ -1,5 +1,6 @@
 import pandas as pd
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from sqlalchemy import create_engine
 from sklearn.decomposition import PCA
 
@@ -8,6 +9,7 @@ from cs6242_project.db.config import config
 
 app = Flask(__name__)
 app.config["DEBUG"]=True
+CORS(app)
 
 # connect to the PostgreSQL database
 params = config()
@@ -163,12 +165,11 @@ def item_to_item_method():
     TOP_K=20 
     pca = PCA(n_components=2)
 
-    #request_data = request.args #FIXME make me work
-    #input_df = pd.DataFrame(request_data) #FIXME make me work
+    input_data = request.json["songs"]
     
     filtered_input = []
     #for req in request_data:
-    for req in dummy_inputs:#FIXME replace with real data 
+    for req in input_data:
         filtered_input.append({k:v for k,v in req.items() if k in DF_COLUMNS})
 
     input_df = pd.DataFrame.from_records(filtered_input)
@@ -178,9 +179,8 @@ def item_to_item_method():
     outputs = []
     outputs_df = pd.DataFrame(columns=DF_COLUMNS)
 
-    #FIXME: This may not work - need to figure out data structure of received request
     #for message in request_data: 
-    for message in filtered_input: #FIXME replace with real data 
+    for message in filtered_input:
         track = message.get("track_uri")
         outputs.append(item_to_item(track, engine, CACHE))
     outputs_df = pd.concat(outputs)
@@ -208,12 +208,10 @@ def item_to_item_method():
     final_df = final_df.reset_index()
     
     response = jsonify(final_df.T.to_dict())
-    response.headers.add('Access-Control-Allow-Origin', '*')
     return response
     
 
 @app.route("/", methods=["GET", "POST"])
 def hello_world():
     response = jsonify({"Output": "Hello from the otherside"})
-    response.headers.add('Access-Control-Allow-Origin', '*')
     return response
