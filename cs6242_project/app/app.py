@@ -203,7 +203,9 @@ def item_to_item_method():
     final_df = final_df.where(pd.notnull(final_df), None)
     final_df = final_df.reset_index()
     
-    return jsonify(final_df.T.to_dict())
+    response = jsonify(final_df.T.to_dict())
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
     
 
 @app.route("/", methods=["GET", "POST"])
