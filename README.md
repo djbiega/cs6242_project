@@ -3,6 +3,9 @@
 
 ## Getting Started
 
+### Submodules
+First you need to pull down all the submodules of this repo. Run the command `git submodule update --init --recursive`
+
 ### Docker
 There is a Dockerfile with pulls from the ubuntu:20.04 image that should be 
 flexible enough for our needs. There is a supplementary Makefile provided to 
