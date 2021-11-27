@@ -1,0 +1,4 @@
+[submodule "web-app"]
+	path = web-app
+	url = git@github.com:nzinn08/CSE6242-Web-App.git
+	branch = main

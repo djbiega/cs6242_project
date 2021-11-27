@@ -56,4 +56,6 @@ def item_to_item_method():
 
 @app.route("/", methods=["GET"])
 def hello_world():
-    return jsonify({"Output": "Hello from the otherside"})
+    response = jsonify({"Output": "Hello from the otherside"})
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
