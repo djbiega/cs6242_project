@@ -202,7 +202,7 @@ def item_to_item_method():
     return jsonify(combined_df.T.to_dict())
     
 
-@app.route("/", methods=["POST"])
+@app.route("/", methods=["GET", "POST"])
 def hello_world():
     response = jsonify({"Output": "Hello from the otherside"})
     response.headers.add('Access-Control-Allow-Origin', '*')
