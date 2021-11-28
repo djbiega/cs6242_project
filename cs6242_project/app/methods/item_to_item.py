@@ -11,6 +11,7 @@ def get_random_songs(engine, cache):
     query = f"""
         SELECT
         t1.track_uri,
+        t1.track_name,
         t1.artist_name,
         t1.album_name,
         t1.popularity,
@@ -40,6 +41,7 @@ def item_to_item(track, engine, cache):
     query = """
         SELECT
             t1.track_uri,
+            t1.track_name,
             t1.artist_name,
             t1.album_name,
             t1.popularity,

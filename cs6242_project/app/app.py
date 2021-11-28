@@ -71,6 +71,7 @@ dummy_inputs=[
 
 DF_COLUMNS = [
     "track_uri",
+    "track_name",
     "artist",
     "album",
     "popularity",
@@ -125,7 +126,9 @@ def item_to_item_method():
         track = message.get("track_uri")
         outputs.append(item_to_item(track, engine, CACHE))
     outputs_df = pd.concat(outputs)
-    outputs_df = outputs_df.rename(columns={"album_name": "album", "artist_name": "artist"})
+    outputs_df = outputs_df.rename(
+            columns={"album_name": "album", "artist_name": "artist", "track_name": "name"}
+    )
     temp_df = outputs_df[outputs_df.columns[~outputs_df.columns.isin(NUMERIC_COLUMNS)]].set_index("track_uri")
     temp_df = temp_df.drop_duplicates()
     outputs_df = outputs_df.groupby("track_uri")[NUMERIC_COLUMNS].mean()
