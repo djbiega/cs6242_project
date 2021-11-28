@@ -3,10 +3,12 @@ Item to item content based filtering
 """
 from textwrap import dedent
 
+import numpy as np
 import pandas as pd
 
-def get_random_songs(engine):
-    query = """
+def get_random_songs(engine, cache):
+    random_songs = np.random.choice(cache['tracks'], 20)
+    query = f"""
         SELECT
         t1.track_uri,
         t1.artist_name,
@@ -22,7 +24,7 @@ def get_random_songs(engine):
         t1.valence,
         t1.tempo
     FROM tracks t1
-    LIMIT 21;
+    WHERE t1.track_uri IN {*random_songs,};
     """
     recommendations = pd.read_sql(query, con=engine)
     recommendations["score"] = 1e-6
@@ -32,7 +34,7 @@ def get_random_songs(engine):
 
 def item_to_item(track, engine, cache):
     if track not in cache['tracks']:
-        return get_random_songs(engine)
+        return get_random_songs(engine, cache)
         
     
     query = """

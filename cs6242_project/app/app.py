@@ -19,118 +19,60 @@ engine = create_engine("postgresql+psycopg2://{user}:{password}@{host}:{port}/{d
 cache_query = "SELECT track_uri FROM tracks"
 CACHE = {"tracks": pd.read_sql(cache_query, con=engine)['track_uri'].to_list()}
 
-
-dummy_inputs = [
+dummy_inputs=[
     {
-        "acousticness": 0.0209,
-        "album": "Do It To It",
-        "analysis_url": "https://api.spotify.com/v1/audio-analysis/20on25jryn53hWghthWW3",
-        "artist": "ACRAZE",
-        "danceability": 0.854,
-        "duration_ms": 157890,
-        "energy": 0.806,
-        "id": "20on25jryn53hWghthWW3",
-        "instrumentalness": 0.0542,
-        "key": 11,
-        "liveness": 0.0703,
-        "loudness": -8.262,
+        "acousticness": 0.101,
+        "album": "The Best In The World Pack",
+        "analysis_url": "https://api.spotify.com/v1/audio-analysis/5ry2OE6R2zPQFDO85XkgRb",
+        "artist": "Drake",
+        "danceability": 0.831,
+        "duration_ms": 205427,
+        "energy": 0.502,
+        "id": "5ry2OE6R2zPQFDO85XkgRb",
+        "instrumentalness": 0,
+        "key": 10,
+        "liveness": 0.122,
+        "loudness": -4.045,
         "mode": 0,
-        "name": "Do It To It",
-        "speechiness": 0.0886,
-        "tempo": 124.927,
+        "name": "Money In The Grave (Drake ft. Rick Ross)",
+        "speechiness": 0.046,
+        "tempo": 100.541,
         "time_signature": 4,
-        "track_href": "https://api.spotify.com/v1/tracks/20on25jryn53hWghthWW3",
-        "type": "audio_feaures",
-        "track_uri": "spotify:track:6l9HDwqU46DHCuNyvbmFdP",
-        "valence": 0.637,
+        "track_href": "https://api.spotify.com/v1/tracks/5ry2OE6R2zPQFDO85XkgRb",
+        "track_uri": "spotify:track:5ry2OE6R2zPQFDO85XkgRb",
+        "type": "audio_features",
+        "valence": 0.101,
     },
     {
-        'track_uri': 'spotify:track:6I9VzXrHxO9rA9A5euc8Ak',
-        'artist_name': 'Britney Spears',
-        'track_name': 'Toxic',
-        'album_name': 'In The Zone',
-        'popularity': 82.0,
-        'danceability': 0.774,
-        'energy': 0.838,
-        'key': 5.0,
-        'loudness': -3.914,
-        'mode': 0.0,
-        'speechiness': 0.114,
-        'acousticness': 0.0249,
-        'instrumentalness': 0.025,
-        'liveness': 0.242,
-        'valence': 0.924,
-        'tempo': 143.04,
-        'duration_ms': 198800.0,
-        'time_signature': 4.0
-    },
-    {
-        'track_uri': 'spotify:track:0WqIKmW4BTrj3eJFmnCKMv',
-        'artist_name': 'Beyoncé',
-        'track_name': 'Crazy In Love',
-        'album_name': 'Dangerously In Love (Alben für die Ewigkeit)',
-        'popularity': 24.0,
-        'danceability': 0.664,
-        'energy': 0.758,
-        'key': 2.0,
-        'loudness': -6.583,
-        'mode': 0.0,
-        'speechiness': 0.21,
-        'acousticness': 0.00238,
-        'instrumentalness': 0.0,
-        'liveness': 0.0598,
-        'valence': 0.701,
-        'tempo': 99.259,
-        'duration_ms': 235933.0,
-        'time_signature': 4.0
-    },
-    {
-        'track_uri': 'spotify:track:1AWQoqb9bSvzTjaLralEkT',
-        'artist_name': 'Justin Timberlake',
-        'track_name': 'Rock Your Body',
-        'album_name': 'Justified',
-        'popularity': 76.0,
-        'danceability': 0.892,
-        'energy': 0.714,
-        'key': 4.0,
-        'loudness': -6.055,
-        'mode': 0.0,
-        'speechiness': 0.141,
-        'acousticness': 0.201,
-        'instrumentalness': 0.000234,
-        'liveness': 0.0521,
-        'valence': 0.817,
-        'tempo': 100.972,
-        'duration_ms': 267267.0,
-        'time_signature': 4.0
-    },
-    {
-        'track_uri': 'spotify:track:1lzr43nnXAijIGYnCT8M8H',
-        'artist_name': 'Shaggy',
-        'track_name': "It Wasn't Me",
-        'album_name': 'Hot Shot',
-        'popularity': 3.0,
-        'danceability': 0.853,
-        'energy': 0.606,
-        'key': 0.0,
-        'loudness': -4.596,
-        'mode': 1.0,
-        'speechiness': 0.0713,
-        'acousticness': 0.0561,
-        'instrumentalness': 0.0,
-        'liveness': 0.313,
-        'valence': 0.654,
-        'tempo': 94.759,
-        'duration_ms': 227600.0,
-        'time_signature': 4.0
+        "acousticness": 0.0206,
+        "album": "Run It (feat. Rick Ross & Rich Brian)",
+        "analysis_url": "https://api.spotify.com/v1/audio-analysis/282R6Lvm9nLtpx8AzUwJe0",
+        "artist": "DJ Snake",
+        "danceability": 0.688,
+        "duration_ms": 163390,
+        "energy": 0.725,
+        "id": "282R6Lvm9nLtpx8AzUwJe0",
+        "instrumentalness": 0.00000918,
+        "key": 2,
+        "liveness": 0.0859,
+        "loudness": -7.831,
+        "mode": 1,
+        "name": "Run It (feat. Rick Ross & Rich Brian)",
+        "speechiness": 0.0456,
+        "tempo": 104.018,
+        "time_signature": 4,
+        "track_href": "https://api.spotify.com/v1/tracks/282R6Lvm9nLtpx8AzUwJe0",
+        "track_uri": "spotify:track:282R6Lvm9nLtpx8AzUwJe0",
+        "type": "audio_features",
+        "valence": 0.224,
     }
 ]
 
 
 DF_COLUMNS = [
     "track_uri",
-    "artist_name",
-    "album_name",
+    "artist",
+    "album",
     "popularity",
     "danceability",
     "energy",
@@ -145,7 +87,7 @@ DF_COLUMNS = [
 ]
 
 PCA_COLUMNS = [
-    "popularity",
+    #"popularity", #FIXME: Include only if it is sent in th einput data
     "danceability",
     "energy",
     "loudness",
@@ -168,30 +110,27 @@ def item_to_item_method():
     input_data = request.json["songs"]
     
     filtered_input = []
-    #for req in request_data:
     for req in input_data:
         filtered_input.append({k:v for k,v in req.items() if k in DF_COLUMNS})
 
     input_df = pd.DataFrame.from_records(filtered_input)
     input_df = input_df.set_index("track_uri")
     input_df["is_recommended"] = False
+    input_df["popularity"] = 0 #FIXME: Input data doesn't include popularity
     
     outputs = []
     outputs_df = pd.DataFrame(columns=DF_COLUMNS)
 
-    #for message in request_data: 
     for message in filtered_input:
         track = message.get("track_uri")
         outputs.append(item_to_item(track, engine, CACHE))
     outputs_df = pd.concat(outputs)
+    outputs_df = outputs_df.rename(columns={"album_name": "album", "artist_name": "artist"})
     temp_df = outputs_df[outputs_df.columns[~outputs_df.columns.isin(NUMERIC_COLUMNS)]].set_index("track_uri")
     temp_df = temp_df.drop_duplicates()
     outputs_df = outputs_df.groupby("track_uri")[NUMERIC_COLUMNS].mean()
     outputs_df = temp_df.join(outputs_df)
     combined_df = pd.concat([input_df, outputs_df])
-
-    # Drop where popularity is none bc for some dumb reason I didn't excluse those in the database
-    combined_df = combined_df[combined_df['popularity'].notna()]
 
     pca_df = combined_df[PCA_COLUMNS]
     pca.fit(pca_df)
@@ -203,6 +142,7 @@ def item_to_item_method():
     original_df["score"] = 0
     combined_df = combined_df.sort_values(by=["score"], ascending=False).head(TOP_K)
     final_df = pd.concat([combined_df, original_df])
+
     # If there are any NoNs for whatever reason, convert to None so jsonify can convert to valid json
     final_df = final_df.where(pd.notnull(final_df), None)
     final_df = final_df.reset_index()
