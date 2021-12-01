@@ -72,6 +72,7 @@ dummy_inputs=[
 DF_COLUMNS = [
     "track_uri",
     "track_name",
+    "name",
     "artist",
     "album",
     "popularity",
