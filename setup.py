@@ -5,7 +5,7 @@ APP_EXTRAS = [
     "Flask-Cors",
     "scikit-learn",
     "SQLAlchemy",
-	"scipy>=1.7.0"
+    "scipy>=1.7.0"
 ]
 
 DATA_EXTRAS = [
