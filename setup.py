@@ -9,6 +9,7 @@ APP_EXTRAS = [
 DATA_EXTRAS = [
     "notebook>=6.4.5",
     "spotipy>=2.19.0",
+	"scipy>=1.7.0"
 ]
 
 DB_EXTRAS = [
