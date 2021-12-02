@@ -2,6 +2,7 @@ from setuptools import find_packages, setup
 
 APP_EXTRAS = [
     "Flask",
+    "Flask-Cors",
     "scikit-learn",
     "SQLAlchemy",
 ]

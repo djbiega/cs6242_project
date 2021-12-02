@@ -10,9 +10,6 @@ services:
       - POSTGRES_DB=spotify
     volumes:
       - db-data:/var/lib/postgresql/data # persist data even if container shuts down
-    networks:
-      spotify_network:
-        ipv4_address: 192.168.0.5
   app: 
     build: ./docker/app
     ports:
@@ -20,19 +17,20 @@ services:
     environment:
       - FLASK_ENV=development
     volumes:
-      - .:/opt/cs6242_home/
-    networks:
-      spotify_network:
-        ipv4_address: 192.168.0.4
+      - .:/opt/cs6242_home
     depends_on:
       - db
+  web-app:
+    build: ./web-app
+    ports:
+      - "3000:3000"
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    volumes:
+      - ./web-app:/app
+      - /app/node_modules
+    depends_on:
+      - app
 
 volumes:
   db-data: # names volumes can be managed easier using docker-compose
-
-networks:
-  spotify_network:
-    ipam:
-      driver: default 
-      config:
-        - subnet: 192.168.0.0/24
