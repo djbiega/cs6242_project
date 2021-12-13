@@ -5,11 +5,12 @@ APP_EXTRAS = [
     "Flask-Cors",
     "scikit-learn",
     "SQLAlchemy",
+    "scipy>=1.7.0"
 ]
 
 DATA_EXTRAS = [
     "notebook>=6.4.5",
-    "spotipy>=2.19.0",
+    "spotipy>=2.19.0"
 ]
 
 DB_EXTRAS = [
